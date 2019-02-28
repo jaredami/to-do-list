@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class List extends React.Component {
   constructor(props) {
@@ -33,4 +34,31 @@ class List extends React.Component {
   }
 }
 
-export default List;
+const mapStateToProps = state => {
+  return {
+    toDos: state.toDos,
+    value: state.value
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleCheckboxClick: event => {
+      dispatch({
+        type: "CHECKBOX_CLICK",
+        payload: event.target.dataset.num
+      });
+    },
+    handleDeleteClick: event => {
+      dispatch({
+        type: "DELETE_CLICK",
+        payload: event.target.dataset.num
+      });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List);

@@ -1,50 +1,12 @@
 import React, { Component } from "react";
 import List from "./Components/List";
+import { connect } from "react-redux";
 import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      toDos: [
-        { text: "Take out the trash", checked: false, id: 1 },
-        { text: "Empty Dishwasher", checked: false, id: 2 },
-        { text: "Meditate", checked: false, id: 3 },
-        { text: "Walk the dogs", checked: false, id: 4 }
-      ],
-      value: ""
-    };
-  }
-
-  handleCheckboxClick = event => {
-    let checkNum = event.target.dataset.num;
-    let toDos = [...this.state.toDos];
-    let item = { ...toDos[checkNum] };
-    item.checked = !item.checked;
-    toDos[checkNum] = item;
-    this.setState({ toDos });
-  };
-  handleDeleteClick = event => {
-    let delNum = event.target.dataset.num;
-    let toDos = [...this.state.toDos];
-    toDos.splice(delNum, 1);
-    this.setState({ toDos });
-  };
-  handleInputChange = event => {
-    this.setState({
-      value: event.target.value
-    });
-  };
-  handleAddClick = event => {
+  onSubmit = event => {
     event.preventDefault();
-    let listLength = this.state.toDos.length;
-    this.setState({
-      toDos: [
-        ...this.state.toDos,
-        { text: this.state.value, checked: false, id: listLength + 1 }
-      ],
-      value: ""
-    });
+    this.props.handleAddClick(event);
   };
   render() {
     return (
@@ -52,23 +14,17 @@ class App extends Component {
         <div className="container">
           <h1 id="heading">To Do List</h1>
           <div id="list-container">
-            <List
-              toDos={this.state.toDos}
-              handleCheckboxClick={this.handleCheckboxClick}
-              handleDeleteClick={this.handleDeleteClick}
-            />
+            <List toDos={this.props.toDos} />
           </div>
-          <form>
+          <form onSubmit={this.onSubmit}>
             <input
               type="text"
               name="newItemInput"
               placeholder="Enter new item here"
-              value={this.state.value}
-              onChange={this.handleInputChange}
+              value={this.props.value}
+              onChange={this.props.handleInputChange}
             />
-            <button id="add-button" onClick={this.handleAddClick}>
-              Add
-            </button>
+            <button id="add-button">Add</button>
           </form>
         </div>
       </div>
@@ -76,4 +32,30 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    toDos: state.toDos,
+    value: state.value
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleInputChange: event => {
+      dispatch({
+        type: "INPUT_CHANGE",
+        payload: event.target.value
+      });
+    },
+    handleAddClick: () => {
+      dispatch({
+        type: "ADD_CLICK"
+      });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
