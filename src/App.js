@@ -14,7 +14,7 @@ class App extends Component {
         <div className="container">
           <h1 id="heading">To Do List</h1>
           <div id="list-container">
-            <List toDos={this.props.toDos} />
+            <List {...this.props} />
           </div>
           <form onSubmit={this.onSubmit}>
             <input
@@ -50,6 +50,18 @@ const mapDispatchToProps = dispatch => {
     handleAddClick: () => {
       dispatch({
         type: "ADD_CLICK"
+      });
+    },
+    handleCheckboxClick: event => {
+      dispatch({
+        type: "CHECKBOX_CLICK",
+        payload: event.target.dataset.num
+      });
+    },
+    handleDeleteClick: event => {
+      dispatch({
+        type: "DELETE_CLICK",
+        payload: event.target.dataset.num
       });
     }
   };

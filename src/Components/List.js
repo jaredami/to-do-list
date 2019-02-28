@@ -1,64 +1,29 @@
 import React from "react";
-import { connect } from "react-redux";
 
-class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    const checkedStyle = {
-      textDecoration: "line-through"
-    };
-    return (
-      <ul id="list">
-        {this.props.toDos.map((item, index) => {
-          return (
-            <li key={index} name={"item" + item.id}>
-              <input
-                type="checkbox"
-                data-num={index}
-                onChange={this.props.handleCheckboxClick}
-                checked={item.checked}
-              />
-              <p style={item.checked ? checkedStyle : null}>{item.text}</p>
-              <button data-num={index} onClick={this.props.handleDeleteClick}>
-                X
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    toDos: state.toDos,
-    value: state.value
+const List = props => {
+  const checkedStyle = {
+    textDecoration: "line-through"
   };
+  return (
+    <ul id="list">
+      {props.toDos.map((item, index) => {
+        return (
+          <li key={index} name={"item" + item.id}>
+            <input
+              type="checkbox"
+              data-num={index}
+              onChange={props.handleCheckboxClick}
+              checked={item.checked}
+            />
+            <p style={item.checked ? checkedStyle : null}>{item.text}</p>
+            <button data-num={index} onClick={props.handleDeleteClick}>
+              X
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    handleCheckboxClick: event => {
-      dispatch({
-        type: "CHECKBOX_CLICK",
-        payload: event.target.dataset.num
-      });
-    },
-    handleDeleteClick: event => {
-      dispatch({
-        type: "DELETE_CLICK",
-        payload: event.target.dataset.num
-      });
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(List);
+export default List;

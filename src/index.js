@@ -53,7 +53,6 @@ const todoApp = (state = initialState, action) => {
         toDos: toDos2
       };
     case ADD_CLICK:
-      // action.event.preventDefault();
       let listLength = state.toDos.length;
       return {
         ...state,
