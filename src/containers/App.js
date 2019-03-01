@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import List from "./Components/List";
+import List from "../components/List";
 import { connect } from "react-redux";
-import "./App.css";
+import * as actions from "../actions/todoAppActions";
+import "../App.css";
 
 class App extends Component {
   onSubmit = event => {
@@ -42,27 +43,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleInputChange: event => {
-      dispatch({
-        type: "INPUT_CHANGE",
-        payload: event.target.value
-      });
+      dispatch(actions.handleInputChange(event));
     },
     handleAddClick: () => {
-      dispatch({
-        type: "ADD_CLICK"
-      });
+      dispatch(actions.handleAddClick());
     },
     handleCheckboxClick: event => {
-      dispatch({
-        type: "CHECKBOX_CLICK",
-        payload: event.target.dataset.num
-      });
+      dispatch(actions.handleCheckboxClick(event));
     },
     handleDeleteClick: event => {
-      dispatch({
-        type: "DELETE_CLICK",
-        payload: event.target.dataset.num
-      });
+      dispatch(actions.handleDeleteClick(event));
     }
   };
 };
