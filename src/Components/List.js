@@ -8,7 +8,7 @@ const List = props => {
     <ul id="list">
       {props.toDos.map((item, index) => {
         return (
-          <li key={index} name={"item" + item.id}>
+          <li key={item.id} name={"item" + index}>
             <input
               type="checkbox"
               data-num={index}

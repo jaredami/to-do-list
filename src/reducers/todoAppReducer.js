@@ -40,12 +40,14 @@ const todoApp = (state = initialState, action) => {
         toDos: toDos2
       };
     case ADD_CLICK:
-      let listLength = state.toDos.length;
+      let idsArr = state.toDos.map(todo => todo.id);
+      let maxId = Math.max(...idsArr);
+      let newId = maxId + 1;
       return {
         ...state,
         toDos: [
           ...state.toDos,
-          { text: state.value, checked: false, id: listLength + 1 }
+          { text: state.value, checked: false, id: newId }
         ],
         value: ""
       };
