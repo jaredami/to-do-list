@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import List from "../components/List";
+import Login from "../components/Login";
+import ToDos from "../components/ToDos";
 import { connect } from "react-redux";
 import * as actions from "../actions/todoAppActions";
 import "../App.css";
@@ -12,22 +13,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="container">
-          <h1 id="heading">To Do List</h1>
-          <div id="list-container">
-            <List {...this.props} />
-          </div>
-          <form onSubmit={this.onSubmit}>
-            <input
-              type="text"
-              name="newItemInput"
-              placeholder="Enter new item here"
-              value={this.props.value}
-              onChange={this.props.handleInputChange}
-            />
-            <button id="add-button">Add</button>
-          </form>
-        </div>
+        <Login />
+        <ToDos {...this.props} />
       </div>
     );
   }
