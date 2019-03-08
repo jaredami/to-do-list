@@ -11,8 +11,8 @@ class App extends Component {
     console.log(this.props);
     return (
       <div className="App">
-        <Login {...this.props} />
-        <ToDos {...this.props} />
+        {!this.props.loggedIn && <Login {...this.props} />}
+        {this.props.loggedIn && <ToDos {...this.props} />}
       </div>
     );
   }
