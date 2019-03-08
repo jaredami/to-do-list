@@ -1,4 +1,10 @@
-import { createStore } from "redux";
-import todoApp from "./reducers/todoAppReducer";
+import { createStore, combineReducers } from "redux";
+import loginReducer from "./reducers/loginReducer";
+import todoReducer from "./reducers/todoReducer";
 
-export default createStore(todoApp);
+export default createStore(
+  combineReducers({
+    loginReducer,
+    todoReducer
+  })
+);

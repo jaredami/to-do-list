@@ -13,8 +13,7 @@ const initialState = {
   value: ""
 };
 
-const todoApp = (state = initialState, action) => {
-  console.log(action);
+const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case INPUT_CHANGE:
       return {
@@ -56,4 +55,4 @@ const todoApp = (state = initialState, action) => {
   }
 };
 
-export default todoApp;
+export default todoReducer;
