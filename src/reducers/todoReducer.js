@@ -10,7 +10,7 @@ const initialState = {
     { text: "Meditate", checked: false, id: 3 },
     { text: "Walk the dogs", checked: false, id: 4 }
   ],
-  value: ""
+  toDoInput: ""
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -18,10 +18,10 @@ const todoReducer = (state = initialState, action) => {
     case INPUT_CHANGE:
       return {
         ...state,
-        value: action.payload
+        toDoInput: action.todoInput
       };
     case CHECKBOX_CLICK:
-      let checkNum = action.payload;
+      let checkNum = action.itemNumber;
       let toDos = [...state.toDos];
       let item = { ...[...state.toDos][checkNum] };
       item.checked = !item.checked;
@@ -31,7 +31,7 @@ const todoReducer = (state = initialState, action) => {
         toDos
       };
     case DELETE_CLICK:
-      let delNum = action.payload;
+      let delNum = action.itemNumber;
       let toDos2 = [...state.toDos];
       toDos2.splice(delNum, 1);
       return {
@@ -39,17 +39,21 @@ const todoReducer = (state = initialState, action) => {
         toDos: toDos2
       };
     case ADD_CLICK:
-      let idsArr = state.toDos.map(todo => todo.id);
-      let maxId = Math.max(...idsArr);
-      let newId = maxId + 1;
-      return {
-        ...state,
-        toDos: [
-          ...state.toDos,
-          { text: state.value, checked: false, id: newId }
-        ],
-        value: ""
-      };
+      if (state.toDoInput !== "") {
+        let idsArr = state.toDos.map(todo => todo.id);
+        let maxId = Math.max(...idsArr);
+        let newId = maxId + 1;
+        return {
+          ...state,
+          toDos: [
+            ...state.toDos,
+            { text: state.toDoInput, checked: false, id: newId }
+          ],
+          toDoInput: ""
+        };
+      } else {
+        return state;
+      }
     default:
       return state;
   }

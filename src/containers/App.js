@@ -21,7 +21,7 @@ class App extends Component {
         {this.props.loggedIn && (
           <ToDos
             toDos={this.props.toDos}
-            value={this.props.value}
+            toDoInput={this.props.toDoInput}
             handleInputChange={this.props.handleInputChange}
             handleAddClick={this.props.handleAddClick}
             handleCheckboxClick={this.props.handleCheckboxClick}
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
     usernameValue: state.loginReducer.usernameValue,
     passwordValue: state.loginReducer.passwordValue,
     toDos: state.todoReducer.toDos,
-    value: state.todoReducer.value
+    toDoInput: state.todoReducer.toDoInput
   };
 };
 

@@ -1,13 +1,13 @@
 export function handleUsernameInputChange(event) {
   return {
     type: "USERNAME_INPUT_CHANGE",
-    payload: event.target.value
+    usernameInput: event.target.value
   };
 }
 export function handlePasswordInputChange(event) {
   return {
     type: "PASSWORD_INPUT_CHANGE",
-    payload: event.target.value
+    passwordInput: event.target.value
   };
 }
 export function handleLoginClick() {

@@ -13,12 +13,12 @@ const todoReducer = (state = initialState, action) => {
     case USERNAME_INPUT_CHANGE:
       return {
         ...state,
-        usernameValue: action.payload
+        usernameValue: action.usernameInput
       };
     case PASSWORD_INPUT_CHANGE:
       return {
         ...state,
-        passwordValue: action.payload
+        passwordValue: action.passwordInput
       };
     case LOGIN_SUBMIT:
       if (

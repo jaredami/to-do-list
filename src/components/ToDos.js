@@ -23,7 +23,7 @@ const ToDos = props => {
           type="text"
           name="newItemInput"
           placeholder="Enter new item here"
-          value={props.value}
+          value={props.toDoInput}
           onChange={props.handleInputChange}
         />
         <button id="add-button">Add</button>
