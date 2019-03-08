@@ -4,7 +4,6 @@ const List = props => {
   const checkedStyle = {
     textDecoration: "line-through"
   };
-  console.log(props);
   return (
     <ul id="list">
       {props.toDos &&

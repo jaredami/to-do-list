@@ -7,7 +7,11 @@ const ToDos = props => {
     <div className="form-container">
       <h1 id="heading">To Do List</h1>
       <div id="list-container">
-        <List {...props} />
+        <List
+          toDos={props.toDos}
+          handleCheckboxClick={props.handleCheckboxClick}
+          handleDeleteClick={props.handleDeleteClick}
+        />
       </div>
       <form
         onSubmit={event => {

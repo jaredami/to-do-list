@@ -11,8 +11,23 @@ class App extends Component {
     console.log(this.props);
     return (
       <div className="App">
-        {!this.props.loggedIn && <Login {...this.props} />}
-        {this.props.loggedIn && <ToDos {...this.props} />}
+        {!this.props.loggedIn && (
+          <Login
+            handleUsernameInputChange={this.props.handleUsernameInputChange}
+            handlePasswordInputChange={this.props.handlePasswordInputChange}
+            handleLoginClick={this.props.handleLoginClick}
+          />
+        )}
+        {this.props.loggedIn && (
+          <ToDos
+            toDos={this.props.toDos}
+            value={this.props.value}
+            handleInputChange={this.props.handleInputChange}
+            handleAddClick={this.props.handleAddClick}
+            handleCheckboxClick={this.props.handleCheckboxClick}
+            handleDeleteClick={this.props.handleDeleteClick}
+          />
+        )}
       </div>
     );
   }
