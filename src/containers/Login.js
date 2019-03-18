@@ -2,7 +2,8 @@ import React from "react";
 
 import FormContainer from "../components/FormContainer";
 import LoginLabel from "../components/LoginLabel";
-import LoginInput from "../components/LoginInput";
+import Input from "../components/Input";
+import SubmitButton from "../components/SubmitButton";
 
 const Login = props => {
   return (
@@ -16,7 +17,7 @@ const Login = props => {
         <LoginLabel htmlFor="uname">
           <b>Username</b>
         </LoginLabel>
-        <LoginInput
+        <Input
           type="text"
           placeholder="Enter Username"
           name="uname"
@@ -27,16 +28,14 @@ const Login = props => {
         <LoginLabel htmlFor="psw">
           <b>Password</b>
         </LoginLabel>
-        <LoginInput
+        <Input
           type="password"
           placeholder="Enter Password"
           name="psw"
           onChange={props.handlePasswordInputChange}
           required
         />
-        <button id="login-btn" type="submit">
-          Login
-        </button>
+        <SubmitButton type="submit">Login</SubmitButton>
       </form>
     </FormContainer>
   );

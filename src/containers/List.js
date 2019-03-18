@@ -1,11 +1,13 @@
 import React from "react";
 
+import StyledList from "../components/StyledList";
+
 const List = props => {
   const checkedStyle = {
     textDecoration: "line-through"
   };
   return (
-    <ul id="list">
+    <StyledList>
       {props.toDos &&
         props.toDos.map((item, index) => {
           return (
@@ -23,7 +25,7 @@ const List = props => {
             </li>
           );
         })}
-    </ul>
+    </StyledList>
   );
 };
 

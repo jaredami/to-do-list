@@ -1,12 +1,16 @@
 import React from "react";
+
 import List from "./List";
-import "../App.css";
+import FormContainer from "../components/FormContainer";
+import SubmitButton from "../components/SubmitButton";
+import Header from "../components/Header";
+import Input from "../components/Input";
 
 const ToDos = props => {
   return (
-    <div className="form-container">
-      <h1 id="heading">To Do List</h1>
-      <div id="list-container">
+    <FormContainer>
+      <Header>To Do List</Header>
+      <div>
         <List
           toDos={props.toDos}
           handleCheckboxClick={props.handleCheckboxClick}
@@ -19,16 +23,16 @@ const ToDos = props => {
           props.handleAddClick(event);
         }}
       >
-        <input
+        <Input
           type="text"
           name="newItemInput"
           placeholder="Enter new item here"
           value={props.toDoInput}
           onChange={props.handleInputChange}
         />
-        <button id="add-button">Add</button>
+        <SubmitButton type="submit">Add</SubmitButton>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 
