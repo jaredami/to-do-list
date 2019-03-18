@@ -1,16 +1,28 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
 import Login from "./containers/Login";
 import ToDos from "./containers/ToDos";
+
 import { connect } from "react-redux";
 import * as loginActions from "./actions/loginActions";
 import * as todoActions from "./actions/todoActions";
+
 import "./App.css";
+
+const StyledApp = styled.div`
+  height: 100vh;
+  padding: 100px;
+  color: #f5f5f5;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #fbd6d5;
+`;
 
 class App extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="App">
+      <StyledApp>
         {!this.props.loggedIn && (
           <Login
             handleUsernameInputChange={this.props.handleUsernameInputChange}
@@ -28,7 +40,7 @@ class App extends Component {
             handleDeleteClick={this.props.handleDeleteClick}
           />
         )}
-      </div>
+      </StyledApp>
     );
   }
 }

@@ -5,5 +5,7 @@ export default styled.input`
   width: 50%;
   float: none;
   margin: 0 auto;
-  padding: 8px 14px;
+  padding: 10px 18px;
+  border: 4px solid #ffb998;
+  border-radius: 4px;
 `;
