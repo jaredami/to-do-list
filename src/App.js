@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Login from "../components/Login";
-import ToDos from "../components/ToDos";
+import Login from "./containers/Login";
+import ToDos from "./containers/ToDos";
 import { connect } from "react-redux";
-import * as loginActions from "../actions/loginActions";
-import * as todoActions from "../actions/todoActions";
-import "../App.css";
+import * as loginActions from "./actions/loginActions";
+import * as todoActions from "./actions/todoActions";
+import "./App.css";
 
 class App extends Component {
   render() {

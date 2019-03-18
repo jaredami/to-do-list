@@ -1,8 +1,8 @@
 import React from "react";
 
-import FormContainer from "./FormContainer";
-import LoginLabel from "./LoginLabel";
-import LoginInput from "./LoginInput";
+import FormContainer from "../components/FormContainer";
+import LoginLabel from "../components/LoginLabel";
+import LoginInput from "../components/LoginInput";
 
 const Login = props => {
   return (
