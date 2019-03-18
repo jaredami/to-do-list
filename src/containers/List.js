@@ -12,12 +12,16 @@ const List = props => {
         props.toDos.map((item, index) => {
           return (
             <li key={item.id} name={"item" + index}>
-              <input
-                type="checkbox"
-                data-num={index}
-                onChange={props.handleCheckboxClick}
-                checked={item.checked}
-              />
+              <label>
+                <input
+                  type="checkbox"
+                  data-num={index}
+                  onChange={props.handleCheckboxClick}
+                  checked={item.checked}
+                />
+                <span />
+              </label>
+
               <p style={item.checked ? checkedStyle : null}>{item.text}</p>
               <button data-num={index} onClick={props.handleDeleteClick}>
                 X

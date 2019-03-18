@@ -7,4 +7,8 @@ export default styled.button`
   background-color: #ffb998;
   border: none;
   border-radius: 4px;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(110%);
+  }
 `;
