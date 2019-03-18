@@ -1,19 +1,22 @@
 import React from "react";
 
+import FormContainer from "./FormContainer";
+import LoginLabel from "./LoginLabel";
+import LoginInput from "./LoginInput";
+
 const Login = props => {
   return (
-    <div className="form-container">
+    <FormContainer>
       <form
         onSubmit={event => {
           event.preventDefault();
           props.handleLoginClick(event);
         }}
       >
-        <label className="login-label" htmlFor="uname">
+        <LoginLabel htmlFor="uname">
           <b>Username</b>
-        </label>
-        <input
-          className="login-input"
+        </LoginLabel>
+        <LoginInput
           type="text"
           placeholder="Enter Username"
           name="uname"
@@ -21,11 +24,10 @@ const Login = props => {
           required
         />
 
-        <label className="login-label" htmlFor="psw">
+        <LoginLabel htmlFor="psw">
           <b>Password</b>
-        </label>
-        <input
-          className="login-input"
+        </LoginLabel>
+        <LoginInput
           type="password"
           placeholder="Enter Password"
           name="psw"
@@ -36,7 +38,7 @@ const Login = props => {
           Login
         </button>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 
