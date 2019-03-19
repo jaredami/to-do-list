@@ -7,15 +7,21 @@ export default styled.ul`
   li {
     margin-bottom: 8px;
     background-color: #8e4154;
-    padding: 10px;
+    /* padding: 10px; */
+    padding: 0px 10px;
     border-radius: 4px;
     margin: 0 auto 8px;
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    align-items: center;
+
     /* The container */
     label {
       position: relative;
       cursor: pointer;
       font-size: 22px;
       user-select: none;
+      justify-self: center;
     }
 
     /* Hide the browser's default checkbox */
@@ -30,10 +36,14 @@ export default styled.ul`
     /* Create a custom checkbox */
     label span {
       display: inline-block;
+      vertical-align: middle;
+      /* margin-top: 3px; */
+      margin-top: -5px;
       height: 25px;
       width: 25px;
       background-color: #f5f5f5;
       border-radius: 4px;
+      transition: all 300ms;
     }
 
     /* On mouse-over, add a grey background color */
@@ -53,7 +63,7 @@ export default styled.ul`
       display: none;
 
       left: 9px;
-      top: 5px;
+      top: 8px;
       width: 5px;
       height: 10px;
       border: solid white;
@@ -68,19 +78,32 @@ export default styled.ul`
 
     /* To-do item text */
     p {
-      display: inline;
+      display: inline-block;
+      vertical-align: middle;
       margin-left: 10px;
     }
 
     /* Delete button */
     button {
+      display: inline-block;
+      vertical-align: middle;
       float: right;
       margin-right: 0px;
-      background-color: #f5f5f5;
-      border: 4px solid #ffb998;
+      height: 25px;
+      width: 25px;
+      background-color: #ffb998;
+      border: none;
       border-radius: 4px;
-      margin-top: 3px;
+      /* margin-top: 3px; */
       font-weight: 600;
+      color: #ce5e7b;
+      text-align: center;
+      justify-self: center;
+      transition: background-color 300ms;
+      &:hover {
+        cursor: pointer;
+        background-color: #f5f5f5;
+      }
     }
   }
 `;
