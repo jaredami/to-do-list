@@ -4,18 +4,24 @@ export default styled.ul`
   list-style-type: none;
   font-size: 1.2rem;
   padding: 0px;
+  display: grid;
   li {
+    display: grid;
+    grid-template-columns: 8fr 1fr;
     margin-bottom: 8px;
+  }
+  /* List item (checkbox + list text + delete button) */
+  li div:first-child {
     background-color: #8e4154;
     /* padding: 10px; */
     padding: 0px 10px;
     border-radius: 4px;
-    margin: 0 auto 8px;
+    margin: 0px;
     display: grid;
     grid-template-columns: 1fr 10fr 1fr;
     align-items: center;
 
-    /* The container */
+    /* Checkbox container */
     label {
       position: relative;
       cursor: pointer;
@@ -80,14 +86,17 @@ export default styled.ul`
     p {
       display: inline-block;
       vertical-align: middle;
+      /* width: 400px; */
       margin-left: 10px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: auto;
     }
 
     /* Delete button */
-    button {
+    > button {
       display: inline-block;
       vertical-align: middle;
-      float: right;
       margin-right: 0px;
       height: 25px;
       width: 25px;
@@ -104,6 +113,31 @@ export default styled.ul`
         cursor: pointer;
         background-color: #f5f5f5;
       }
+    }
+  }
+
+  /* Re-order buttons container */
+  li div:last-child {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+  }
+
+  /* Re-order buttons */
+  li div button {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 4px;
+    background-color: #8e4154;
+    color: #f5f5f5;
+    &:hover {
+      cursor: pointer;
+      filter: brightness(80%);
+    }
+    &:focus {
+      outline: none;
     }
   }
 `;
