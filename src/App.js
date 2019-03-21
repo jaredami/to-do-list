@@ -20,7 +20,6 @@ const StyledApp = styled.div`
 
 class App extends Component {
   render() {
-    console.log(this.props);
     return (
       <StyledApp>
         {!this.props.loggedIn && (
