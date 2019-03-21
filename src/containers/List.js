@@ -30,8 +30,12 @@ const List = props => {
               </div>
 
               <div>
-                <button>&uarr;</button>
-                <button>&darr;</button>
+                <button data-num={index} onClick={props.handleReorderUpClick}>
+                  &uarr;
+                </button>
+                <button data-num={index} onClick={props.handleReorderDownClick}>
+                  &darr;
+                </button>
               </div>
             </li>
           );

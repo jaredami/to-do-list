@@ -21,3 +21,15 @@ export function handleDeleteClick(event) {
     itemNumber: event.target.dataset.num
   };
 }
+export function handleReorderUpClick(event) {
+  return {
+    type: "REORDER_UP_CLICK",
+    itemNumber: event.target.dataset.num
+  };
+}
+export function handleReorderDownClick(event) {
+  return {
+    type: "REORDER_DOWN_CLICK",
+    itemNumber: event.target.dataset.num
+  };
+}

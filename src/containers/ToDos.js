@@ -15,6 +15,8 @@ const ToDos = props => {
           toDos={props.toDos}
           handleCheckboxClick={props.handleCheckboxClick}
           handleDeleteClick={props.handleDeleteClick}
+          handleReorderUpClick={props.handleReorderUpClick}
+          handleReorderDownClick={props.handleReorderDownClick}
         />
       </div>
       <form

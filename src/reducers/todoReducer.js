@@ -2,6 +2,8 @@ const INPUT_CHANGE = "INPUT_CHANGE";
 const CHECKBOX_CLICK = "CHECKBOX_CLICK";
 const DELETE_CLICK = "DELETE_CLICK";
 const ADD_CLICK = "ADD_CLICK";
+const REORDER_UP_CLICK = "REORDER_UP_CLICK";
+const REORDER_DOWN_CLICK = "REORDER_DOWN_CLICK";
 
 const initialState = {
   toDos: [
@@ -14,6 +16,7 @@ const initialState = {
 };
 
 const todoReducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case INPUT_CHANGE:
       return {
@@ -54,6 +57,24 @@ const todoReducer = (state = initialState, action) => {
       } else {
         return state;
       }
+    case REORDER_UP_CLICK:
+      // store this item
+      let itemToMove = state.toDos[action.itemNumber];
+      console.log(itemToMove);
+      // remove this item
+      let toDosMinusItemToMove = [...state.toDos];
+      toDosMinusItemToMove.splice(action.itemNumber, 1);
+      console.log(toDosMinusItemToMove);
+      // place item back in, but one index lower
+      toDosMinusItemToMove.splice(action.itemNumber - 1, 0, itemToMove);
+      console.log(toDosMinusItemToMove);
+      console.log(state);
+      return {
+        ...state,
+        toDos: toDosMinusItemToMove
+      };
+    case REORDER_DOWN_CLICK:
+      return state;
     default:
       return state;
   }

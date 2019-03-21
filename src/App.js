@@ -38,6 +38,8 @@ class App extends Component {
             handleAddClick={this.props.handleAddClick}
             handleCheckboxClick={this.props.handleCheckboxClick}
             handleDeleteClick={this.props.handleDeleteClick}
+            handleReorderUpClick={this.props.handleReorderUpClick}
+            handleReorderDownClick={this.props.handleReorderDownClick}
           />
         )}
       </StyledApp>
@@ -77,6 +79,12 @@ const mapDispatchToProps = dispatch => {
     },
     handleDeleteClick: event => {
       dispatch(todoActions.handleDeleteClick(event));
+    },
+    handleReorderUpClick: event => {
+      dispatch(todoActions.handleReorderUpClick(event));
+    },
+    handleReorderDownClick: event => {
+      dispatch(todoActions.handleReorderDownClick(event));
     }
   };
 };
