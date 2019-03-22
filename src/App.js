@@ -16,12 +16,42 @@ const StyledApp = styled.div`
   color: #f5f5f5;
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   background-color: #fbd6d5;
+  div:first-child {
+    text-align: center;
+    margin: 40px auto;
+  }
+`;
+
+const NightModeButton = styled.button`
+  display: inline;
+  padding: 10px 20px 6px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  font-size: 50px;
+  color: white;
+  background-color: #d35e7b;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(110%);
+  }
 `;
 
 class App extends Component {
   render() {
     return (
       <StyledApp>
+        <div>
+          <NightModeButton>
+            <span
+              class="iconify"
+              data-icon="mdi-theme-light-dark"
+              data-inline="false"
+            />
+          </NightModeButton>
+        </div>
+
         {!this.props.loggedIn && (
           <Login
             handleUsernameInputChange={this.props.handleUsernameInputChange}
