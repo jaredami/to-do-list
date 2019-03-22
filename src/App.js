@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
 import Login from "./containers/Login";
 import ToDos from "./containers/ToDos";
@@ -15,7 +15,7 @@ const StyledApp = styled.div`
   padding: 100px;
   color: #f5f5f5;
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: #fbd6d5;
+  background-color: ${props => props.theme.main};
   div:first-child {
     text-align: center;
     margin: 40px auto;
@@ -31,47 +31,77 @@ const NightModeButton = styled.button`
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   font-size: 50px;
   color: white;
-  background-color: #d35e7b;
+  background-color: ${props => props.theme.secondary};
   &:hover {
     cursor: pointer;
     filter: brightness(110%);
   }
 `;
 
+// const DarkModeToggler = styled.div`
+//   height: 50px;
+//   width: 50px;
+//   background-color: black;
+// `;
+const theme = {
+  // main: "#fbd6d5",
+  // secondary: "#d35e7b",
+  // secondaryDark: "#8e4154",
+  // accent: "#ffb998"
+
+  // main: "#474c60",
+  // secondary: "#1D1F27",
+  // secondaryDark: "#0f1014",
+  // accent: "#898397"
+
+  main: "#0f1014",
+  secondary: "#474c60",
+  secondaryDark: "#1D1F27",
+  accent: "#898397"
+};
+
 class App extends Component {
   render() {
     return (
-      <StyledApp>
-        <div>
-          <NightModeButton>
-            <span
-              class="iconify"
-              data-icon="mdi-theme-light-dark"
-              data-inline="false"
-            />
-          </NightModeButton>
-        </div>
+      <ThemeProvider theme={theme}>
+        <StyledApp>
+          <div>
+            <NightModeButton>
+              <span
+                class="iconify"
+                data-icon="mdi-theme-light-dark"
+                data-inline="false"
+              />
+            </NightModeButton>
+            {/* <DarkModeToggler>
+            <label>
+              <input type="checkbox" checked />
+              <span />
+            </label>
+          </DarkModeToggler> */}
+          </div>
 
-        {!this.props.loggedIn && (
-          <Login
-            handleUsernameInputChange={this.props.handleUsernameInputChange}
-            handlePasswordInputChange={this.props.handlePasswordInputChange}
-            handleLoginClick={this.props.handleLoginClick}
-          />
-        )}
-        {this.props.loggedIn && (
-          <ToDos
-            toDos={this.props.toDos}
-            toDoInput={this.props.toDoInput}
-            handleInputChange={this.props.handleInputChange}
-            handleAddClick={this.props.handleAddClick}
-            handleCheckboxClick={this.props.handleCheckboxClick}
-            handleDeleteClick={this.props.handleDeleteClick}
-            handleReorderUpClick={this.props.handleReorderUpClick}
-            handleReorderDownClick={this.props.handleReorderDownClick}
-          />
-        )}
-      </StyledApp>
+          {!this.props.loggedIn && (
+            <Login
+              handleUsernameInputChange={this.props.handleUsernameInputChange}
+              handlePasswordInputChange={this.props.handlePasswordInputChange}
+              handleLoginClick={this.props.handleLoginClick}
+            />
+          )}
+          {this.props.loggedIn && (
+            <ToDos
+              toDos={this.props.toDos}
+              toDoInput={this.props.toDoInput}
+              handleInputChange={this.props.handleInputChange}
+              handleAddClick={this.props.handleAddClick}
+              handleCheckboxClick={this.props.handleCheckboxClick}
+              handleDeleteClick={this.props.handleDeleteClick}
+              handleReorderUpClick={this.props.handleReorderUpClick}
+              handleReorderDownClick={this.props.handleReorderDownClick}
+            />
+          )}
+        </StyledApp>
+      </ThemeProvider>
     );
   }
 }

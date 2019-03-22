@@ -12,7 +12,7 @@ export default styled.ul`
   }
   /* List item (checkbox + list text + delete button) */
   li div:first-child {
-    background-color: #8e4154;
+    background-color: ${props => props.theme.secondaryDark};
     /* padding: 10px; */
     padding: 0px 10px;
     border-radius: 4px;
@@ -54,12 +54,12 @@ export default styled.ul`
 
     /* On mouse-over, add a grey background color */
     label:hover input ~ span {
-      background-color: #ccc;
+      background-color: ${props => props.theme.accent};
     }
 
     /* When the checkbox is checked, add an organge background */
     label input:checked ~ span {
-      background-color: #ffb998;
+      background-color: ${props => props.theme.accent};
     }
 
     /* Create and style the checkmark/indicator (hidden when not checked) */
@@ -100,12 +100,11 @@ export default styled.ul`
       margin-right: 0px;
       height: 25px;
       width: 25px;
-      background-color: #ffb998;
+      background-color: ${props => props.theme.accent};
       border: none;
       border-radius: 4px;
-      /* margin-top: 3px; */
       font-weight: 600;
-      color: #ce5e7b;
+      color: ${props => props.theme.secondary};
       text-align: center;
       justify-self: center;
       transition: background-color 300ms;
@@ -130,7 +129,7 @@ export default styled.ul`
     height: 25px;
     border: none;
     border-radius: 4px;
-    background-color: #8e4154;
+    background-color: ${props => props.theme.secondaryDark};
     color: #f5f5f5;
     &:hover {
       cursor: pointer;
