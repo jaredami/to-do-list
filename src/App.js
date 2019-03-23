@@ -56,12 +56,6 @@ class App extends Component {
                 data-inline="false"
               />
             </NightModeButton>
-            {/* <DarkModeToggler>
-            <label>
-              <input type="checkbox" checked />
-              <span />
-            </label>
-          </DarkModeToggler> */}
           </div>
 
           {!this.props.loggedIn && (

@@ -10,6 +10,7 @@ const initialState = {
 
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
+    // update state of usernameValue and passwordValue as input changes
     case USERNAME_INPUT_CHANGE:
       return {
         ...state,
@@ -20,6 +21,7 @@ const todoReducer = (state = initialState, action) => {
         ...state,
         passwordValue: action.passwordInput
       };
+    // when login button is clicked, if username and password are correct, changed loggedIn state to true
     case LOGIN_SUBMIT:
       if (
         state.usernameValue === "yaredami@gmail.com" &&

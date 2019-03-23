@@ -21,6 +21,7 @@ const initialState = {
 const darkModeReducer = (state = initialState, action) => {
   switch (action.type) {
     case DARK_MODE_TOGGLE:
+      // if the "main" property of state.theme matches the main property of the lightTheme, switch to dark, otherwise switch to light
       if (state.theme.main === "#fbd6d5") {
         return { ...state, theme: darkTheme };
       } else {
