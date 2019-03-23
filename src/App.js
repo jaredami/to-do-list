@@ -5,6 +5,7 @@ import Login from "./containers/Login";
 import ToDos from "./containers/ToDos";
 
 import { connect } from "react-redux";
+import * as darkModeActions from "./actions/darkModeActions";
 import * as loginActions from "./actions/loginActions";
 import * as todoActions from "./actions/todoActions";
 
@@ -12,10 +13,11 @@ import "./App.css";
 
 const StyledApp = styled.div`
   height: 100vh;
-  padding: 100px;
+  padding: 50px;
   color: #f5f5f5;
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   background-color: ${props => props.theme.main};
+  transition: all 700ms ease;
   div:first-child {
     text-align: center;
     margin: 40px auto;
@@ -24,7 +26,7 @@ const StyledApp = styled.div`
 
 const NightModeButton = styled.button`
   display: inline;
-  padding: 10px 20px 6px;
+  padding: 10px 10px 0px;
   margin: 0 auto;
   border: none;
   border-radius: 4px;
@@ -36,13 +38,11 @@ const NightModeButton = styled.button`
     cursor: pointer;
     filter: brightness(110%);
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
-// const DarkModeToggler = styled.div`
-//   height: 50px;
-//   width: 50px;
-//   background-color: black;
-// `;
 const theme = {
   // main: "#fbd6d5",
   // secondary: "#d35e7b",
@@ -63,12 +63,12 @@ const theme = {
 class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={this.props.theme}>
         <StyledApp>
           <div>
-            <NightModeButton>
+            <NightModeButton onClick={this.props.handleDarkModeClick}>
               <span
-                class="iconify"
+                className="iconify"
                 data-icon="mdi-theme-light-dark"
                 data-inline="false"
               />
@@ -108,6 +108,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
+    theme: state.darkModeReducer.theme,
     loggedIn: state.loginReducer.loggedIn,
     usernameValue: state.loginReducer.usernameValue,
     passwordValue: state.loginReducer.passwordValue,
@@ -118,6 +119,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    handleDarkModeClick: () => {
+      dispatch(darkModeActions.handleDarkModeClick());
+    },
     handleUsernameInputChange: event => {
       dispatch(loginActions.handleUsernameInputChange(event));
     },

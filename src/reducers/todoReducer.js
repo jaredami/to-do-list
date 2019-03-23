@@ -8,7 +8,7 @@ const REORDER_DOWN_CLICK = "REORDER_DOWN_CLICK";
 const initialState = {
   toDos: [
     { text: "Take out the trash", checked: false, id: 1 },
-    { text: "Empty Dishwasher", checked: false, id: 2 },
+    { text: "Empty dishwasher", checked: false, id: 2 },
     { text: "Meditate", checked: false, id: 3 },
     { text: "Walk the dogs", checked: false, id: 4 }
   ],
