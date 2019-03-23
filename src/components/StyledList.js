@@ -91,6 +91,7 @@ export default styled.ul`
       overflow-wrap: break-word;
       word-wrap: break-word;
       hyphens: auto;
+      text-align: left;
     }
 
     /* Delete button */
