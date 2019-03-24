@@ -10,9 +10,13 @@ const initialState = {
     { text: "Take out the trash", checked: false, id: 1 },
     { text: "Empty dishwasher", checked: false, id: 2 },
     { text: "Meditate", checked: false, id: 3 },
-    { text: "Walk the dogs", checked: false, id: 4 }
+    { text: "Walk the dogs", checked: false, id: 4 },
+    { text: "Code", checked: false, id: 5 },
+    { text: "Gym", checked: false, id: 6 },
+    { text: "Philosophy of Mind homework", checked: false, id: 7 }
   ],
-  toDoInput: ""
+  toDoInput: "",
+  lastChecked: null
 };
 
 // this function is used below for the REORDER_... actions
@@ -64,10 +68,24 @@ const todoReducer = (state = initialState, action) => {
       // replace the old item (in the copy of toDos) with the new item
       toDos[checkNum] = item;
 
-      // update state with the item's checked property toggled
+      // portion below is for checking multiple boxes while holding shift key
+      let inBetween = false;
+      if (action.shiftOn && item.checked) {
+        toDos.forEach(toDo => {
+          if (toDo === item || toDo === state.lastChecked) {
+            inBetween = !inBetween;
+          }
+
+          if (inBetween) {
+            toDo.checked = true;
+          }
+        });
+      }
+
       return {
         ...state,
-        toDos
+        toDos,
+        lastChecked: item
       };
     case DELETE_CLICK:
       // store the index of the item to be deleted

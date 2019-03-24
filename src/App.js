@@ -17,7 +17,7 @@ const StyledApp = styled.div`
   color: #f5f5f5;
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   background-color: ${props => props.theme.main};
-  transition: all 700ms ease;
+  transition: all 600ms ease;
   div:first-child {
     text-align: center;
     margin: 40px auto;

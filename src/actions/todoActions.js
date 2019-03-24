@@ -12,7 +12,8 @@ export function handleAddClick() {
 export function handleCheckboxClick(event) {
   return {
     type: "CHECKBOX_CLICK",
-    itemNumber: event.target.dataset.num
+    itemNumber: event.target.dataset.num,
+    shiftOn: event.nativeEvent.shiftKey
   };
 }
 export function handleDeleteClick(event) {
