@@ -11,9 +11,7 @@ const initialState = {
     { text: "Empty dishwasher", checked: false, id: 2 },
     { text: "Meditate", checked: false, id: 3 },
     { text: "Walk the dogs", checked: false, id: 4 },
-    { text: "Code", checked: false, id: 5 },
-    { text: "Gym", checked: false, id: 6 },
-    { text: "Philosophy of Mind homework", checked: false, id: 7 }
+    { text: "Code", checked: false, id: 5 }
   ],
   toDoInput: "",
   lastChecked: null

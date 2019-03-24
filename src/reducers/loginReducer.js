@@ -3,7 +3,7 @@ const PASSWORD_INPUT_CHANGE = "PASSWORD_INPUT_CHANGE";
 const LOGIN_SUBMIT = "LOGIN_SUBMIT";
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: true,
   usernameValue: "",
   passwordValue: ""
 };
