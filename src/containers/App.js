@@ -9,16 +9,9 @@ import * as darkModeActions from "../actions/darkModeActions";
 import * as loginActions from "../actions/loginActions";
 import * as todoActions from "../actions/todoActions";
 
-const scaleUp = keyframes`
-  0% {
-    transform: scaleY(0.4);
-    transform-origin: 0% 100%;
-  }
-  100% {
-    transform: scaleY(1);
-    transform-origin: 0% 100%;
-  }
-`;
+import { scaleUp } from "../styles/KeyFrames";
+import { slideInElliptic } from "../styles/KeyFrames";
+import { bounceIn } from "../styles/KeyFrames";
 
 const StyledApp = styled.div`
   height: 100vh;
@@ -43,7 +36,9 @@ const NightModeButton = styled.button`
   font-size: 50px;
   color: white;
   background-color: ${props => props.theme.secondary};
-  animation: ${scaleUp} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  /* animation: ${scaleUp} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both; */
+  /* animation: ${slideInElliptic} 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
+  animation: ${bounceIn} 1.1s both;
   &:hover {
     cursor: pointer;
     filter: brightness(110%);

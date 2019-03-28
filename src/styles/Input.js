@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bounceIn } from "../styles/KeyFrames";
 
 export default styled.input`
   display: block;
@@ -8,4 +9,5 @@ export default styled.input`
   padding: 10px 18px;
   border: 4px solid ${props => props.theme.accent};
   border-radius: 4px;
+  animation: ${bounceIn} 1.2s both;
 `;

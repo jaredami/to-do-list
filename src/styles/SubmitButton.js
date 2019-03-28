@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bounceIn } from "../styles/KeyFrames";
 
 export default styled.button`
   display: block;
@@ -7,6 +8,7 @@ export default styled.button`
   background-color: ${props => props.theme.accent};
   border: none;
   border-radius: 4px;
+  animation: ${bounceIn} 1.5s both;
   &:hover {
     cursor: pointer;
     filter: brightness(110%);

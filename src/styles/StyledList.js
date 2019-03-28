@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bounceIn } from "../styles/KeyFrames";
 
 export default styled.ul`
   list-style-type: none;
@@ -13,13 +14,13 @@ export default styled.ul`
   /* List item (checkbox + list text + delete button) */
   li div:first-child {
     background-color: ${props => props.theme.secondaryDark};
-    /* padding: 10px; */
     padding: 0px 10px;
     border-radius: 4px;
     margin: 0px;
     display: grid;
     grid-template-columns: 1fr 10fr 1fr;
     align-items: center;
+    animation: ${bounceIn} 1.1s both;
 
     /* Checkbox container */
     label {
@@ -50,6 +51,7 @@ export default styled.ul`
       background-color: #f5f5f5;
       border-radius: 4px;
       transition: all 300ms;
+      animation: ${bounceIn} 1.3s both;
     }
 
     /* On mouse-over, add a grey background color */
@@ -92,6 +94,7 @@ export default styled.ul`
       word-wrap: break-word;
       hyphens: auto;
       text-align: left;
+      animation: ${bounceIn} 1.1s both;
     }
 
     /* Delete button */
@@ -109,6 +112,7 @@ export default styled.ul`
       text-align: center;
       justify-self: center;
       transition: background-color 300ms;
+      animation: ${bounceIn} 1.1s both;
       &:hover {
         cursor: pointer;
         background-color: #f5f5f5;
@@ -132,6 +136,7 @@ export default styled.ul`
     border-radius: 4px;
     background-color: ${props => props.theme.secondaryDark};
     color: #f5f5f5;
+    animation: ${bounceIn} 1.5s both;
     &:hover {
       cursor: pointer;
       filter: brightness(80%);
