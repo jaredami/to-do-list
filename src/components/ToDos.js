@@ -1,10 +1,10 @@
 import React from "react";
 
 import List from "./List";
-import FormContainer from "../components/FormContainer";
-import SubmitButton from "../components/SubmitButton";
-import Header from "../components/Header";
-import Input from "../components/Input";
+import FormContainer from "../styles/FormContainer";
+import SubmitButton from "../styles/SubmitButton";
+import Header from "../styles/Header";
+import Input from "../styles/Input";
 
 const ToDos = props => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-import StyledList from "../components/StyledList";
+import StyledList from "../styles/StyledList";
 
 const List = props => {
   const checkedStyle = {

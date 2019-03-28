@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider, keyframes } from "styled-components";
 
-import Login from "./containers/Login";
-import ToDos from "./containers/ToDos";
+import Login from "../components/Login";
+import ToDos from "../components/ToDos";
 
 import { connect } from "react-redux";
-import * as darkModeActions from "./actions/darkModeActions";
-import * as loginActions from "./actions/loginActions";
-import * as todoActions from "./actions/todoActions";
+import * as darkModeActions from "../actions/darkModeActions";
+import * as loginActions from "../actions/loginActions";
+import * as todoActions from "../actions/todoActions";
 
-import "./App.css";
+const scaleUp = keyframes`
+  0% {
+    transform: scaleY(0.4);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: 0% 100%;
+  }
+`;
 
 const StyledApp = styled.div`
   height: 100vh;
@@ -34,6 +43,7 @@ const NightModeButton = styled.button`
   font-size: 50px;
   color: white;
   background-color: ${props => props.theme.secondary};
+  animation: ${scaleUp} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   &:hover {
     cursor: pointer;
     filter: brightness(110%);
