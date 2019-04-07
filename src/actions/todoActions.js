@@ -1,7 +1,7 @@
-export function handleInputChange(event) {
+export function handleInputChange(value) {
   return {
     type: "INPUT_CHANGE",
-    todoInput: event.target.value
+    todoInput: value
   };
 }
 export function handleAddClick() {
@@ -9,28 +9,28 @@ export function handleAddClick() {
     type: "ADD_CLICK"
   };
 }
-export function handleCheckboxClick(event) {
+export function handleCheckboxClick(itemNumber, shiftOn) {
   return {
     type: "CHECKBOX_CLICK",
-    itemNumber: event.target.dataset.num,
-    shiftOn: event.nativeEvent.shiftKey
+    itemNumber,
+    shiftOn
   };
 }
-export function handleDeleteClick(event) {
+export function handleDeleteClick(itemNumber) {
   return {
     type: "DELETE_CLICK",
-    itemNumber: event.target.dataset.num
+    itemNumber
   };
 }
-export function handleReorderUpClick(event) {
+export function handleReorderUpClick(itemNumber) {
   return {
     type: "REORDER_UP_CLICK",
-    itemNumber: event.target.dataset.num
+    itemNumber
   };
 }
-export function handleReorderDownClick(event) {
+export function handleReorderDownClick(itemNumber) {
   return {
     type: "REORDER_DOWN_CLICK",
-    itemNumber: event.target.dataset.num
+    itemNumber
   };
 }

@@ -48,7 +48,8 @@ const NightModeButton = styled.button`
   }
 `;
 
-class App extends Component {
+// exported for use in testing
+export class App extends Component {
   render() {
     return (
       <ThemeProvider theme={this.props.theme}>
@@ -101,9 +102,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    /* dark mode actions */
     handleDarkModeClick: () => {
       dispatch(darkModeActions.handleDarkModeClick());
     },
+    /* login actions */
     handleUsernameInputChange: event => {
       dispatch(loginActions.handleUsernameInputChange(event));
     },
@@ -113,23 +116,26 @@ const mapDispatchToProps = dispatch => {
     handleLoginClick: () => {
       dispatch(loginActions.handleLoginClick());
     },
+    /* to do list actions */
     handleInputChange: event => {
-      dispatch(todoActions.handleInputChange(event));
+      dispatch(todoActions.handleInputChange(event.target.value));
     },
     handleAddClick: () => {
       dispatch(todoActions.handleAddClick());
     },
     handleCheckboxClick: event => {
-      dispatch(todoActions.handleCheckboxClick(event));
+      let itemNumber = event.target.dataset.num;
+      let shiftOn = event.nativeEvent.shiftKey;
+      dispatch(todoActions.handleCheckboxClick(itemNumber, shiftOn));
     },
     handleDeleteClick: event => {
-      dispatch(todoActions.handleDeleteClick(event));
+      dispatch(todoActions.handleDeleteClick(event.target.dataset.num));
     },
     handleReorderUpClick: event => {
-      dispatch(todoActions.handleReorderUpClick(event));
+      dispatch(todoActions.handleReorderUpClick(event.target.dataset.num));
     },
     handleReorderDownClick: event => {
-      dispatch(todoActions.handleReorderDownClick(event));
+      dispatch(todoActions.handleReorderDownClick(event.target.dataset.num));
     }
   };
 };

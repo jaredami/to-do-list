@@ -71,7 +71,7 @@ export default styled.ul`
       display: none;
 
       left: 9px;
-      top: 8px;
+      top: 4px;
       width: 5px;
       height: 10px;
       border: solid white;
