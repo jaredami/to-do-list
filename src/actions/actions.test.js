@@ -1,4 +1,14 @@
-import * as actions from "./todoActions";
+import * as darkModeActions from "./darkModeActions";
+import * as todoActions from "./todoActions";
+
+describe("dark mode todoActions", () => {
+  it("should toggle dark mode", () => {
+    const expectedAction = {
+      type: "DARK_MODE_TOGGLE"
+    };
+    expect(darkModeActions.handleDarkModeClick()).toEqual(expectedAction);
+  });
+});
 
 describe("to do list actions", () => {
   it("should create an action to handle input change", () => {
@@ -7,14 +17,14 @@ describe("to do list actions", () => {
       type: "INPUT_CHANGE",
       todoInput
     };
-    expect(actions.handleInputChange(todoInput)).toEqual(expectedAction);
+    expect(todoActions.handleInputChange(todoInput)).toEqual(expectedAction);
   });
 
   it("should create an action to handle Add button click", () => {
     const expectedAction = {
       type: "ADD_CLICK"
     };
-    expect(actions.handleAddClick()).toEqual(expectedAction);
+    expect(todoActions.handleAddClick()).toEqual(expectedAction);
   });
 
   it("should create an action to handle checkbox click", () => {
@@ -25,7 +35,7 @@ describe("to do list actions", () => {
       itemNumber,
       shiftOn
     };
-    expect(actions.handleCheckboxClick(itemNumber, shiftOn)).toEqual(
+    expect(todoActions.handleCheckboxClick(itemNumber, shiftOn)).toEqual(
       expectedAction
     );
   });
@@ -36,7 +46,7 @@ describe("to do list actions", () => {
       type: "DELETE_CLICK",
       itemNumber
     };
-    expect(actions.handleDeleteClick(itemNumber)).toEqual(expectedAction);
+    expect(todoActions.handleDeleteClick(itemNumber)).toEqual(expectedAction);
   });
 
   it("should create an action to handle re-order up button click", () => {
@@ -45,7 +55,9 @@ describe("to do list actions", () => {
       type: "REORDER_UP_CLICK",
       itemNumber
     };
-    expect(actions.handleReorderUpClick(itemNumber)).toEqual(expectedAction);
+    expect(todoActions.handleReorderUpClick(itemNumber)).toEqual(
+      expectedAction
+    );
   });
 
   it("should create an action to handle re-order up button click", () => {
@@ -54,6 +66,8 @@ describe("to do list actions", () => {
       type: "REORDER_DOWN_CLICK",
       itemNumber
     };
-    expect(actions.handleReorderDownClick(itemNumber)).toEqual(expectedAction);
+    expect(todoActions.handleReorderDownClick(itemNumber)).toEqual(
+      expectedAction
+    );
   });
 });
