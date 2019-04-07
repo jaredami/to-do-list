@@ -108,10 +108,10 @@ const mapDispatchToProps = dispatch => {
     },
     /* login actions */
     handleUsernameInputChange: event => {
-      dispatch(loginActions.handleUsernameInputChange(event));
+      dispatch(loginActions.handleUsernameInputChange(event.target.value));
     },
     handlePasswordInputChange: event => {
-      dispatch(loginActions.handlePasswordInputChange(event));
+      dispatch(loginActions.handlePasswordInputChange(event.target.value));
     },
     handleLoginClick: () => {
       dispatch(loginActions.handleLoginClick());

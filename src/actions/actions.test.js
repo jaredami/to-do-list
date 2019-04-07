@@ -1,8 +1,10 @@
 import * as darkModeActions from "./darkModeActions";
+import * as loginActions from "./loginActions";
 import * as todoActions from "./todoActions";
 
+/* tests for dark mode action creators */
 describe("dark mode todoActions", () => {
-  it("should toggle dark mode", () => {
+  it("should create an action to toggle dark mode", () => {
     const expectedAction = {
       type: "DARK_MODE_TOGGLE"
     };
@@ -10,6 +12,39 @@ describe("dark mode todoActions", () => {
   });
 });
 
+/* tests for login action creators */
+describe("login actions", () => {
+  it("should create an aciton to handle input change", () => {
+    let value = "test@gmail.com";
+    const expectedAction = {
+      type: "USERNAME_INPUT_CHANGE",
+      usernameInput: value
+    };
+    expect(loginActions.handleUsernameInputChange(value)).toEqual(
+      expectedAction
+    );
+  });
+
+  it("should create an aciton to handle password change", () => {
+    let value = "1234";
+    const expectedAction = {
+      type: "PASSWORD_INPUT_CHANGE",
+      passwordInput: value
+    };
+    expect(loginActions.handlePasswordInputChange(value)).toEqual(
+      expectedAction
+    );
+  });
+
+  it("should create an aciton to handle Login button click", () => {
+    const expectedAction = {
+      type: "LOGIN_SUBMIT"
+    };
+    expect(loginActions.handleLoginClick()).toEqual(expectedAction);
+  });
+});
+
+/* tests for to do list action creators */
 describe("to do list actions", () => {
   it("should create an action to handle input change", () => {
     const todoInput = "Finish docs";
