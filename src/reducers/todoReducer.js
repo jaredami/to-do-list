@@ -47,7 +47,6 @@ function moveElementInArray(array, value, positionChange) {
 }
 
 const todoReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     // store changes to the input field in state.toDoInput
     case INPUT_CHANGE:
@@ -55,6 +54,30 @@ const todoReducer = (state = initialState, action) => {
         ...state,
         toDoInput: action.todoInput
       };
+    case ADD_CLICK:
+      // if the input field is not empty...
+      if (state.toDoInput !== "") {
+        // create a unique id:
+        // make an array of the id's for each state.toDo item
+        let idsArr = state.toDos.map(todo => todo.id);
+        // get the highest number from the array
+        let maxId = Math.max(...idsArr);
+        // add 1 to that number to be used as the id for the new item
+        let newId = maxId + 1;
+
+        // update the state, inserting a new to-do item with the user's input as its text
+        return {
+          ...state,
+          toDos: [
+            ...state.toDos,
+            { text: state.toDoInput, checked: false, id: newId }
+          ],
+          // reset state.toDoInput
+          toDoInput: ""
+        };
+      } else {
+        return state;
+      }
     case CHECKBOX_CLICK:
       // make a copy of state.toDos
       let toDos = [...state.toDos];
@@ -98,30 +121,7 @@ const todoReducer = (state = initialState, action) => {
         ...state,
         toDos: toDos2
       };
-    case ADD_CLICK:
-      // if the input field is not empty...
-      if (state.toDoInput !== "") {
-        // create a unique id:
-        // make an array of the id's for each state.toDo item
-        let idsArr = state.toDos.map(todo => todo.id);
-        // get the highest number from the array
-        let maxId = Math.max(...idsArr);
-        // add 1 to that number to be used as the id for the new item
-        let newId = maxId + 1;
 
-        // update the state, inserting a new to-do item with the user's input as its text
-        return {
-          ...state,
-          toDos: [
-            ...state.toDos,
-            { text: state.toDoInput, checked: false, id: newId }
-          ],
-          // reset state.toDoInput
-          toDoInput: ""
-        };
-      } else {
-        return state;
-      }
     case REORDER_UP_CLICK:
       // if this isn't already the top item...
       if (action.itemNumber > 0) {
