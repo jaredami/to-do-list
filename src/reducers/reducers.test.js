@@ -1,5 +1,6 @@
 import darkModeReducer from "./darkModeReducer";
 import loginReducer from "./loginReducer";
+import todoReducer from "./todoReducer";
 
 /* tests for dark mode toggler reducer */
 describe("dark mode reducer", () => {
@@ -163,6 +164,261 @@ describe("login reducer", () => {
       loggedIn: true,
       usernameValue: "yaredami@gmail.com",
       passwordValue: "pw"
+    });
+  });
+});
+
+/* tests for to do list reducer */
+describe("to do list reducer", () => {
+  it("should return the initial state", () => {
+    expect(todoReducer(undefined, {})).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Walk the dogs", checked: false, id: 4 },
+        { text: "Code", checked: false, id: 5 }
+      ],
+      toDoInput: "",
+      lastChecked: null
+    });
+  });
+
+  it("should handle INPUT_CHANGE", () => {
+    expect(
+      todoReducer(undefined, {
+        type: "INPUT_CHANGE",
+        todoInput: "test input"
+      })
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Walk the dogs", checked: false, id: 4 },
+        { text: "Code", checked: false, id: 5 }
+      ],
+      toDoInput: "test input",
+      lastChecked: null
+    });
+
+    expect(
+      todoReducer(
+        {
+          toDos: [
+            { text: "Take out the trash", checked: false, id: 1 },
+            { text: "Empty dishwasher", checked: false, id: 2 },
+            { text: "Meditate", checked: false, id: 3 },
+            { text: "Walk the dogs", checked: false, id: 4 },
+            { text: "Code", checked: false, id: 5 }
+          ],
+          toDoInput: "test input before",
+          lastChecked: null
+        },
+        {
+          type: "INPUT_CHANGE",
+          todoInput: "test input after"
+        }
+      )
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Walk the dogs", checked: false, id: 4 },
+        { text: "Code", checked: false, id: 5 }
+      ],
+      toDoInput: "test input after",
+      lastChecked: null
+    });
+  });
+
+  it("should handle ADD_CLICK", () => {
+    expect(
+      todoReducer(
+        {
+          toDos: [
+            { text: "Take out the trash", checked: false, id: 1 },
+            { text: "Empty dishwasher", checked: false, id: 2 },
+            { text: "Meditate", checked: false, id: 3 },
+            { text: "Walk the dogs", checked: false, id: 4 },
+            { text: "Code", checked: false, id: 5 }
+          ],
+          toDoInput: "",
+          lastChecked: null
+        },
+        {
+          type: "ADD_CLICK"
+        }
+      )
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Walk the dogs", checked: false, id: 4 },
+        { text: "Code", checked: false, id: 5 }
+      ],
+      toDoInput: "",
+      lastChecked: null
+    });
+
+    expect(
+      todoReducer(
+        {
+          toDos: [
+            { text: "Take out the trash", checked: false, id: 1 },
+            { text: "Empty dishwasher", checked: false, id: 2 },
+            { text: "Meditate", checked: false, id: 3 },
+            { text: "Walk the dogs", checked: false, id: 4 },
+            { text: "Code", checked: false, id: 5 }
+          ],
+          toDoInput: "test to do input",
+          lastChecked: null
+        },
+        {
+          type: "ADD_CLICK"
+        }
+      )
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Walk the dogs", checked: false, id: 4 },
+        { text: "Code", checked: false, id: 5 },
+        { text: "test to do input", checked: false, id: 6 }
+      ],
+      toDoInput: "",
+      lastChecked: null
+    });
+  });
+
+  it("should handle CHECKBOX_CLICK", () => {
+    expect(
+      todoReducer(
+        {
+          toDos: [
+            { text: "Take out the trash", checked: false, id: 1 },
+            { text: "Empty dishwasher", checked: false, id: 2 },
+            { text: "Meditate", checked: false, id: 3 },
+            { text: "Walk the dogs", checked: false, id: 4 },
+            { text: "Code", checked: false, id: 5 }
+          ],
+          toDoInput: "",
+          lastChecked: null
+        },
+        {
+          type: "CHECKBOX_CLICK",
+          itemNumber: 3,
+          shiftOn: false
+        }
+      )
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Walk the dogs", checked: true, id: 4 },
+        { text: "Code", checked: false, id: 5 }
+      ],
+      toDoInput: "",
+      lastChecked: { text: "Walk the dogs", checked: true, id: 4 }
+    });
+  });
+
+  it("should handle DELETE_CLICK", () => {
+    expect(
+      todoReducer(
+        {
+          toDos: [
+            { text: "Take out the trash", checked: false, id: 1 },
+            { text: "Empty dishwasher", checked: false, id: 2 },
+            { text: "Meditate", checked: false, id: 3 },
+            { text: "Walk the dogs", checked: false, id: 4 },
+            { text: "Code", checked: false, id: 5 }
+          ],
+          toDoInput: "",
+          lastChecked: null
+        },
+        {
+          type: "DELETE_CLICK",
+          itemNumber: 1
+        }
+      )
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Walk the dogs", checked: false, id: 4 },
+        { text: "Code", checked: false, id: 5 }
+      ],
+      toDoInput: "",
+      lastChecked: null
+    });
+  });
+
+  it("should handle REORDER_UP_CLICK", () => {
+    expect(
+      todoReducer(
+        {
+          toDos: [
+            { text: "Take out the trash", checked: false, id: 1 },
+            { text: "Empty dishwasher", checked: false, id: 2 },
+            { text: "Meditate", checked: false, id: 3 },
+            { text: "Walk the dogs", checked: false, id: 4 },
+            { text: "Code", checked: false, id: 5 }
+          ],
+          toDoInput: "",
+          lastChecked: null
+        },
+        {
+          type: "REORDER_UP_CLICK",
+          itemNumber: 3
+        }
+      )
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Walk the dogs", checked: false, id: 4 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Code", checked: false, id: 5 }
+      ],
+      toDoInput: "",
+      lastChecked: null
+    });
+  });
+
+  it("should handle REORDER_DOWN_CLICK", () => {
+    expect(
+      todoReducer(
+        {
+          toDos: [
+            { text: "Take out the trash", checked: false, id: 1 },
+            { text: "Empty dishwasher", checked: false, id: 2 },
+            { text: "Meditate", checked: false, id: 3 },
+            { text: "Walk the dogs", checked: false, id: 4 },
+            { text: "Code", checked: false, id: 5 }
+          ],
+          toDoInput: "",
+          lastChecked: null
+        },
+        {
+          type: "REORDER_DOWN_CLICK",
+          itemNumber: 3
+        }
+      )
+    ).toEqual({
+      toDos: [
+        { text: "Take out the trash", checked: false, id: 1 },
+        { text: "Empty dishwasher", checked: false, id: 2 },
+        { text: "Meditate", checked: false, id: 3 },
+        { text: "Code", checked: false, id: 5 },
+        { text: "Walk the dogs", checked: false, id: 4 }
+      ],
+      toDoInput: "",
+      lastChecked: null
     });
   });
 });
